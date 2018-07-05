@@ -1,0 +1,24 @@
+ #! /usr/bin/gnuplot -persist
+unset multiplot
+set terminal postscript color eps enhanced
+set output "test1.eps"
+set encoding koi8r
+set xlabel "s" font "Helvetica,18"
+set ylabel "h" font "Helvetica,18"
+set key left
+set xrange [-0.1:5]
+set yrange [-0.1:]
+
+f(x,n) = log(x)/(16-n)
+
+plot \
+'g_aver_0.dat' using 3:(f($1,0)) lt 1 t 'x=0.0', \
+'g_aver_0.dat' using 3:(f($1,0)) with lines lt 1 dt 2 t '', \
+'g_aver_3.dat' using 3:(f($1,3)) lt 6 t 'x=0.2', \
+'g_aver_3.dat' using 3:(f($1,3)) with lines lt 6 dt 2 t '', \
+'g_aver_7.dat' using 3:(f($1,7)) lt 3 t 'x=0.4', \
+'g_aver_7.dat' using 3:(f($1,7)) with lines lt 3 dt 2 t '', \
+'g_aver_10.dat' using 3:(f($1,10)) lt 4 t 'x=0.6', \
+'g_aver_10.dat' using 3:(f($1,10)) with lines lt 4 dt 2 t '', \
+'g_aver_13.dat' using 3:(f($1,13)) lt 5 t 'x=0.8', \
+'g_aver_13.dat' using 3:(f($1,13)) with lines lt 5 dt 2 t ''
